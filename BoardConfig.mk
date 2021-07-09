@@ -149,10 +149,6 @@ AB_OTA_PARTITIONS += \
 # vendor and odm and we also dont want to AB update them
 TARGET_ENFORCE_AB_OTA_PARTITION_LIST := true
 
-# Init
-TARGET_INIT_VENDOR_LIB := //$(LOCAL_PATH):libinit_moto_trinket
-TARGET_RECOVERY_DEVICE_MODULES := libinit_moto_trinket
-
 # Encryption
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
