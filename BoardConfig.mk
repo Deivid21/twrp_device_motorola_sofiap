@@ -62,8 +62,8 @@ BOARD_RAMDISK_OFFSET       := 0x01000000
 BOARD_DTB_OFFSET           := 0x01f00000
 
 
-TARGET_PREBUILT_DTBOIMAGE := $(LOCAL_PATH)/dtbo.img
-TARGET_PREBUILT_DTB := $(LOCAL_PATH)/dtb.img
+TARGET_PREBUILT_DTBOIMAGE := $(LOCAL_PATH)/prebuilt/dtbo.img
+TARGET_PREBUILT_DTB := $(LOCAL_PATH)/prebuilt/dtb.img
 BOARD_INCLUDE_RECOVERY_DTBO = true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
@@ -80,8 +80,7 @@ BOARD_MKBOOTIMG_ARGS += --recovery_dtbo $(TARGET_PREBUILT_DTBOIMAGE)
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_KERNEL_SOURCE := kernel/motorola/trinket
+TARGET_KERNEL_SOURCE := kernel/motorola/sm6125
 TARGET_KERNEL_CONFIG := vendor/sofiar_defconfig
 BOARD_KERNEL_SEPARATED_DTBO := true
 TARGET_KERNEL_VERSION := 4.14
@@ -113,7 +112,8 @@ BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 4341104640
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system \
-    product
+    product \
+    vendor
 
 TARGET_NO_KERNEL := false
 TARGET_NO_RECOVERY := false
@@ -138,10 +138,11 @@ TARGET_USES_MKE2FS := true
 # more partitions to this list for the bootloader and radio.
 AB_OTA_PARTITIONS += \
     boot \
+    dtbo \
     system \
+    product \
     vendor \
-    vbmeta \
-    dtbo
+    vbmeta
 
 # tell update_engine to not change dynamic partition table during updates
 # needed since our qti_dynamic_partitions does not include
