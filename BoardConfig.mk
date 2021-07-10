@@ -132,8 +132,7 @@ BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 4341104640
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
     system \
-    product \
-    vendor
+    product
 
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
