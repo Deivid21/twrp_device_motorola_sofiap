@@ -1,4 +1,4 @@
-# TWRP Device configuration for Moto G8 Power
+# TWRP Device configuration for Moto G Pro
 
 ## Device specifications
 
@@ -14,7 +14,7 @@ Basic   | Spec Sheet
 ```sh
 . build/envsetup.sh
 export LC_ALL=C
-lunch omni_sofiar-eng
+lunch omni_sofiap-eng
 make -j4 recoveryimage
 ```
 
