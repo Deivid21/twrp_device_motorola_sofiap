@@ -41,14 +41,27 @@ insmod $module_path/mmi_sys_temp.ko
 insmod $module_path/moto_f_usbnet.ko
 insmod $module_path/qpnp-power-on-mmi.ko
 insmod $module_path/qpnp-smbcharger-mmi.ko
-insmod $module_path/tas2562.ko
+insmod $module_path/tps61280.ko
 insmod $module_path/focaltech_0flash_mmi.ko
-insmod $module_path/nova_0flash_mmi.ko
+insmod $module_path/bu520xx_pen.ko
+
+is_auo=$(cat /proc/cmdline | grep "ft8756_auo")
 
 cd $firmware_path
 touch_product_string=$(ls $touch_class_path)
-insmod $module_path/aw8624.ko
-firmware_file="focaltech-ft8756-0d-01-sofiar.bin"
+case $touch_product_string in
+    ft8756)
+        case $device in
+            sofiap | sofiap_ao | sofia_t)
+                insmod $module_path/aw8695.ko
+                if [ -z "$is_auo" ]; then
+                    firmware_file="focaltech-tianma-ft8756-11-01-sofiap.bin"
+                else
+                    firmware_file="focaltech-auo-ft8756-0b-01-sofiap.bin"
+                fi
+        esac
+        ;;
+esac
 
 touch_path=/sys$(cat $touch_class_path/$touch_product_string/path | awk '{print $1}')
 wait_for_poweron
